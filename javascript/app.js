@@ -3,7 +3,7 @@ $(document).ready(function (){
   
     // Your web app's Firebase configuration
     var firebaseConfig = {
-        apiKey: "AIzaSyCM1uCoKr0g9FpzdeYGtLvd8QlKghYfyXw",
+        apiKey: "",
         authDomain: "trainscheduler-1afa8.firebaseapp.com",
         databaseURL: "https://trainscheduler-1afa8.firebaseio.com",
         projectId: "trainscheduler-1afa8",
