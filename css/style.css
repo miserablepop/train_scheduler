@@ -1,3 +1,39 @@
+.jumbotron {
+    text-align: center;
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    text-shadow: 2px 2px #000;
+  }
+  
+  .lead span {
+    color: orange;
+    font-weight: bold;
+  }
+  
+  .bg-cover {
+    background-image: url('../images/France-Train-Travel.jpg');
+    background-size: cover;
+    color: white;
+    background-position: center center;
+    position: relative;
+    z-index: -2;
+  }
+  
+  .overlay {
+    background-color: #000;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+  }
+
 .card{
     margin-top: 20px;
+}
+
+.card-header{
+    background-color:#0524A4;
 }

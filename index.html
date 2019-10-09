@@ -21,16 +21,23 @@
 
 </head>
 <body>
-    <div class="container">
+    <!-- <div class="container">
         <div class="jumbotron">
             <h1 class="display-4">Train Scheduler</h1>
             <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
         </div>
+    </div> -->
+
+    <div class="jumbotron jumbotron bg-cover">
+      <div class="overlay"></div>
+      <div class="container">
+        <h1 class="display-3 mb-1">Train Scheduler</h1>
+      </div>
     </div>
-    
+
     <div class="container">     
         <div class="card">
-            <div class="card-header bg-dark text-white">Current Train Schedule</div>
+            <div class="card-header text-white bg-dark border-dark mb-3">Current Train Schedule</div>
             <div class="card-body">
                     <div class="container">
                             <table class="table table-hover table-striped" id="train-table">
@@ -54,7 +61,7 @@
 
     <div class="container">     
         <div class="card">
-            <div class="card-header bg-dark text-white">Add a Train</div>
+            <div class="card-header text-white bg-dark border-dark mb-3">Add a Train</div>
             <div class="card-body">
                     <form>
                             <div class="form-group">
@@ -79,9 +86,11 @@
         </div>
     </div>
 
-    
+    <!-- Added Moment JS -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
     <!-- JavaScript -->
-  <script src="javascript/app.js"></script>
+    <script src="javascript/app.js"></script>
   
 </body>
 </html>
