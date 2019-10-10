@@ -21,13 +21,7 @@
 
 </head>
 <body>
-    <!-- <div class="container">
-        <div class="jumbotron">
-            <h1 class="display-4">Train Scheduler</h1>
-            <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-        </div>
-    </div> -->
-
+    <!-- Jumbotron -->
     <div class="jumbotron jumbotron bg-cover">
       <div class="overlay"></div>
       <div class="container">
@@ -35,62 +29,79 @@
       </div>
     </div>
 
+    <!-- Current Train Schedule card -->
     <div class="container">     
-        <div class="card">
-            <div class="card-header text-white bg-dark border-dark mb-3">Current Train Schedule</div>
-            <div class="card-body">
-                    <div class="container">
-                            <table class="table table-hover table-striped" id="train-table">
-                              <thead class="thead-dark">
-                                <tr>
-                                  <th>Train Name</th>
-                                  <th>Destination</th>
-                                  <th>Frequency (min)</th>
-                                  <th>Next Arrival</th>
-                                  <th>Minutes Away</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                            
-                              </tbody>
-                            </table>
-                          </div>
+      <div class="card">
+        <div class="card-header text-white bg-dark border-dark mb-3">Current Train Schedule</div>
+          <div class="card-body">
+            <div class="container">
+              <table class="table table-hover table-striped" id="train-table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>Train Name</th>
+                    <th>Destination</th>
+                    <th>Frequency (min)</th>
+                    <th>Next Arrival</th>
+                    <th>Minutes Away</th>
+                  </tr>
+                </thead>
+                <tbody>            
+                </tbody>
+              </table>
             </div>
+          </div>
         </div>
+      </div>
     </div>
 
+    <!-- Add a train card -->
     <div class="container">     
-        <div class="card">
-            <div class="card-header text-white bg-dark border-dark mb-3">Add a Train</div>
-            <div class="card-body">
-                    <form>
-                            <div class="form-group">
-                                <label for="trainName">Train Name</label>
-                                <input type="text" class="form-control" id="trainName-input" placeholder="Enter the train name">
-                            </div>
-                            <div class="form-group">
-                              <label for="trainDestination">Destination</label>
-                              <input type="text" class="form-control" id="trainDestination-input" placeholder="Enter the train destination">
-                            </div>
-                            <div class="form-group">
-                              <label for="firstTrainTime">First Train Time (HH:mm military time)</label>
-                              <input type="text" class="form-control" id="firstTrainTime-input" placeholder="Enter the train">
-                            </div>
-                            <div class="form-group">
-                                <label for="frequency">Frequency (min)</label>
-                                <input type="text" class="form-control" id="frequency-input" placeholder="Enter the train frequency">
-                            </div>
-                            <button type="submit" class="btn btn-primary" id="add-train-btn">Submit</button>
-                          </form>
-            </div>
+      <div class="card">
+        <div class="card-header text-white bg-dark border-dark mb-3">Add a Train</div>
+          <div class="card-body">
+            <form class="needs-validation" id="train-form" novalidate>
+              <div class="form-group">
+                <label for="trainName">Train Name</label>
+                <input type="text" class="form-control" id="trainName-input" placeholder="Enter the train name" required>
+                <div class="invalid-feedback">
+                  Please Enter a Train Name
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="trainDestination">Destination</label>
+                <input type="text" class="form-control" id="trainDestination-input" placeholder="Enter the train destination" required>
+                <div class="invalid-feedback">
+                  Please Enter a Train Destination
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="firstTrainTime">First Train Time (HH:mm military time)</label>
+                <input type="text" class="form-control" id="firstTrainTime-input" placeholder="Enter the first train time" required>
+                <div class="invalid-feedback">
+                  Please Enter a First Train Time 
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="frequency">Frequency (min)</label>
+                <input type="text" class="form-control" id="frequency-input" placeholder="Enter the train frequency" required>
+                <div class="invalid-feedback">
+                  Please Enter Train's Frequency
+                </div>
+              </div>
+              <button type="submit" class="btn btn-dark" id="add-train-btn">Submit</button>
+            </form>
         </div>
+      </div>
     </div>
+
+   
 
     <!-- Added Moment JS -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
     <!-- JavaScript -->
     <script src="javascript/app.js"></script>
+
   
 </body>
 </html>

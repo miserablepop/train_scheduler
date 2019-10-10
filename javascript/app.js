@@ -20,65 +20,84 @@ $(document).ready(function (){
 
     // Button for adding trains
     $("#add-train-btn").on('click', function(event){
+
+        // event.preventDefault();
+
+        var form = $('#train-form');
+
+        if (form[0].checkValidity() === false) {
+            event.preventDefault()
+            event.stopPropagation()
+          } else {
+
+            // Grab Train input
+            var trainName = $('#trainName-input').val().trim();
+            var trainDestination = $('#trainDestination-input').val().trim();
+            var firstTrainTime = $('#firstTrainTime-input').val();
+            var frequency = $('#frequency-input').val();
+
+            // Console log to check inputs
+            // console.log(trainName);
+            // console.log(trainDestination);
+            // console.log(firstTrainTime);
+            // console.log(frequency);
+
+            // Create a local object for each train entry
+            var newTrain = {
+                train: trainName,
+                destination: trainDestination,
+                firstTime: firstTrainTime,
+                trainFequency: frequency
+            }
+
+            // Uploads train data to the database
+            database.ref().push(newTrain);
+            
+            // Log everything to the console
+            // console.log(newTrain.train);
+            // console.log(newTrain.destination);
+            // console.log(newTrain.firstTime);
+            // console.log(newTrain.trainFequency);
+
         
-        event.preventDefault();
 
-        // Grab Train input
-        var trainName = $('#trainName-input').val().trim();
-        var trainDestination = $('#trainDestination-input').val().trim();
-        var firstTrainTime = $('#firstTrainTime-input').val();
-        var frequency = $('#frequency-input').val();
+            alert("Train successfully added");
 
-        // Console log to check inputs
-        // console.log(trainName);
-        // console.log(trainDestination);
-        // console.log(firstTrainTime);
-        // console.log(frequency);
+            // Clears all of the text-boxes
+            $("#trainName-input").val("");
+            $("#trainDestination-input").val("");
+            $("#firstTrainTime-input").val("");
+            $("#frequency-input").val("");
 
-        // Create a local object for each train entry
-        var newTrain = {
-            train: trainName,
-            destination: trainDestination,
-            firstTime: firstTrainTime,
-            trainFequency: frequency
-        }
+          }
+          
+          form.addClass('was-validated');
 
-        // Uploads train data to the database
-        database.ref().push(newTrain);
-        
-        // Log everything to the console
-        // console.log(newTrain.train);
-        // console.log(newTrain.destination);
-        // console.log(newTrain.firstTime);
-        // console.log(newTrain.trainFequency);
-
-        alert("Train successfully added");
-
-        // Clears all of the text-boxes
-        $("#trainName-input").val("");
-        $("#trainDestination-input").val("");
-        $("#firstTrainTime-input").val("");
-        $("#frequency-input").val("");
     });
 
-    
+    // Firebase event to add a train and then write the data to the train schedule section
+
     database.ref().on("child_added", function(childSnapshot){
         
         console.log(childSnapshot.val());
 
+        // Store database values in variables
         var trainName = childSnapshot.val().train;
         var trainDestination = childSnapshot.val().destination;
         var frequency = childSnapshot.val().trainFequency;
         var firstTrainTime = childSnapshot.val().firstTime;
         
+        // Log everything to confirm data
         console.log(trainName);
         console.log(trainDestination);
         console.log(frequency);
         console.log(firstTrainTime)
 
+        // Convert first train time 
         var firstTimeConverted = moment(firstTrainTime, 'HH:mm').subtract(1, 'years');
         console.log(firstTimeConverted);
 
+        // Get the time difference from now to the first train time
         var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
         console.log("DIFFERENCE IN TIME: " + diffTime);
 
@@ -86,15 +105,15 @@ $(document).ready(function (){
         var tRemainder = diffTime % frequency;
         console.log(tRemainder);
 
-        // Minute Until Train
+        // Calculate how long until the next train
         var tMinutesTillTrain = frequency - tRemainder;
-        console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+        console.log(tMinutesTillTrain);
 
-        // Next Train
+        // Calculate the next train arrival
         var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-        console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+        console.log(moment(nextTrain).format("hh:mm"));
 
-
+        // Create a new row in the train schedule table
         var newRow =$('<tr>').append(
             $('<td>').text(trainName),
             $('<td>').text(trainDestination),
@@ -102,7 +121,9 @@ $(document).ready(function (){
             $('<td>').text(moment(nextTrain).format("hh:mm")),
             $('<td>').text(tMinutesTillTrain),
         );
-
+        
+        // Append each new train entry
         $("#train-table > tbody").prepend(newRow);
     });
+
 });
