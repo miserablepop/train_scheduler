@@ -4,15 +4,15 @@
 
 The Train Scheduler app will allow a user to enter a train's information:
 
--- Train Name
--- Train Desintation
--- First Train Time
--- Frequency of Train
+- Train Name
+- Train Desintation
+- First Train Time
+- Frequency of Train
 
 With this information, the train will be added to the scheduler for the user to see updated information and calculated data like: 
 
--- Next train arrival 
--- How many minutes until the current train arrives.
+- Next train arrival 
+- How many minutes until the current train arrives.
 
 
 ## Few important items
